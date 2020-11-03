@@ -32,25 +32,7 @@ public class GUI {
 	
 	private char mark;
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUI window = new GUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
 	public GUI() {
 		
 		initialize();
@@ -61,8 +43,9 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 511, 379);
+		frame.setBounds(100, 100, 800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
@@ -72,19 +55,19 @@ public class GUI {
 		
 		JPanel msgPanel = new JPanel();
 		GridBagConstraints gbc_msgPanel = new GridBagConstraints();
-		gbc_msgPanel.gridwidth = 2;
 		gbc_msgPanel.gridheight = 3;
 		gbc_msgPanel.fill = GridBagConstraints.BOTH;
-		gbc_msgPanel.gridx = 8;
+		gbc_msgPanel.gridx = 9;
 		gbc_msgPanel.gridy = 0;
 		frame.getContentPane().add(msgPanel, gbc_msgPanel);
+		msgPanel.setSize(200, 500);
 		msgPanel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel msgLabel = new JLabel("Message Window");
-		msgLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		msgLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		msgLabel.setBackground(new Color(0, 0, 0));
 		msgLabel.setForeground(Color.BLACK);
-		msgLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		msgLabel.setFont(new Font("Tahoma", Font.BOLD, 21));
 		msgPanel.add(msgLabel, BorderLayout.NORTH);
 		
 		textPane = new JTextPane();
