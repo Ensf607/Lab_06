@@ -1,5 +1,4 @@
-package exercise2;
-
+package exercise_1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,14 +30,14 @@ public class Client {
 		boolean running = true;
 		while (running) {
 			try {
-				System.out.println("Please select an option (DATE/TIME) ");
+				System.out.println("please enter a word: ");
 				line = stdIn.readLine();
 				if (!line.equals("QUIT")){
+					System.out.println(line);
 					socketOut.println(line);
 					response = socketIn.readLine();
-					System.out.println(response);
+					System.out.println(response);	
 				}else{
-					socketOut.println(line);
 					running = false;
 				}
 				
@@ -57,7 +56,7 @@ public class Client {
 	}
 
 	public static void main(String[] args) throws IOException  {
-		Client aClient = new Client("localhost", 9090);
+		Client aClient = new Client("localhost", 8099);
 		aClient.communicate();
 	}
 }

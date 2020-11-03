@@ -1,3 +1,4 @@
+package exercise_3;
 /** 
  * Started by M. Moussavi
  * March 2015
