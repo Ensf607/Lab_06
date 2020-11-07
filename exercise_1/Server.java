@@ -6,15 +6,42 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
+/**
+ * The Server class reads a string message from socket, examines 
+ * it to determine whether or not it is a palindrome and sends an 
+ * appropriate message back to the client.
+ * 
+ * @author Ziad Chemali and Lotfi Hasni
+ * @version 1.0
+ * @since October 30, 2020
+ *
+ */
 public class Server {
 
-
+	/**
+	 * Socket for communicating with client.
+	 */
 	private Socket aSocket;
+	
+	/**
+	 * Server socket used to listen for requests.
+	 */
 	private ServerSocket serverSocket;
+	
+	/**
+	 * Stream for writing to socket.
+	 */
 	private PrintWriter socketOut;
+	
+	/**
+	 * Stream for reading from socket.
+	 */
 	private BufferedReader socketIn;
 
+	/**
+	 * Server constructor. Creates ServerSocket object
+	 * with port number 8099.
+	 */
 	public Server() {
 		try {
 			serverSocket = new ServerSocket(8099);
@@ -23,6 +50,11 @@ public class Server {
 		}
 	}
 	
+	/**
+	 * Checks if the given word is in fact a palindrome.
+	 * @param word the word to be checked
+	 * @return true if the word is a palindrome, false otherwise
+	 */
 	private boolean checkPalindrome(String word) {
 		StringBuilder str = new StringBuilder(word);
 		
@@ -36,6 +68,10 @@ public class Server {
 		}
 	}
 	
+	/**
+	 * Manages the communication with the client-side
+	 * depending on the nature of the entered string.
+	 */
 	public void palindrome() {
 		String line = null;
 		while(true) {
@@ -57,6 +93,11 @@ public class Server {
 		}
 	}
 	
+	/**
+	 * Creates server, establishes connection and runs program
+	 * @param args command line arguments (none for this program)
+	 * @throws IOException
+	 */
 	public static void main(String [] args) throws IOException {
 		
 		Server myServer = new Server(); 
