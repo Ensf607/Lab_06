@@ -13,12 +13,34 @@ import java.io.ObjectOutputStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-
+/**
+ * The WriteRecord class is used to read from a text file containing music record 
+ * information and create a binary serialized file containing music record objects.
+ * Modified by: Ziad Chemali and Lotfi Hasni
+ * @version 1.0
+ * @since October 30, 2020
+ *
+ */
 public class WriteRecord {
 
+	/**
+	 * For writing record objects to file.
+	 */
 	ObjectOutputStream objectOut = null;
+	
+	/**
+	 * Used to hold current MusicRecord object for writing.
+	 */
 	MusicRecord record = null;
+	
+	/**
+	 * For user input.
+	 */
 	Scanner stdin = null;
+	
+	/**
+	 * For file input.
+	 */
 	Scanner textFileIn = null;
 
 	/**
@@ -49,7 +71,6 @@ public class WriteRecord {
 	 */
 	public void openFileInputStream(String textFileName) {
         
-     // TO BE COMPLETED BY THE STUDENTS
 		try {
 			textFileIn = new Scanner(new FileInputStream(textFileName));
 		} catch (FileNotFoundException e) {
@@ -63,7 +84,6 @@ public class WriteRecord {
 	 */
 	public void openObjectOutputStream(String objectFileName) {
         
-    // TO BE COMPLETED BY THE STUDENTS
 		FileOutputStream fileOutput = null;
 		try {
 			fileOutput = new FileOutputStream(objectFileName);
@@ -102,8 +122,6 @@ public class WriteRecord {
             
 			setRecord(year, songName, singerName, price);
 			textFileIn.nextLine();   // read the dashed lines and do nothing
-            
-            // THE REST OF THE CODE TO BE COMPLETED BY THE STUDENTS
 			
 			try {
 				objectOut.writeObject(record);
@@ -115,8 +133,6 @@ public class WriteRecord {
 				System.err.println("Invalid input.");
 			}
 		}
-
-		// YOUR CODE GOES HERE
 		
 		try {
 			if(objectOut != null)
@@ -129,6 +145,11 @@ public class WriteRecord {
 		}
 	}
 
+	/**
+	 * Creates a new WriteRecord object, serializes record objects and writes them to binary file.
+	 * @param args command line arguments (none for this program)
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
         
 		WriteRecord d = new WriteRecord();

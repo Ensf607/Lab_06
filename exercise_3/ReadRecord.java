@@ -10,14 +10,26 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
+/**
+ * The ReadRecord class is used to deserialize and retrieve 
+ * record information from binary file. 
+ * Modified by: Ziad Chemali and Lotfi Hasni
+ * @version 1.0
+ * @since October 30, 2020
+ *
+ */
 public class ReadRecord {
     
+	/**
+	 * Used to recover data from serialized objects.
+	 */
     private ObjectInputStream input;
     
-    /**
-     *  opens an ObjectInputStream using a FileInputStream
-     */
     
+    /**
+     * Opens an ObjectInputStream using a FileInputStream
+     * @param name the file name
+     */
     private void readObjectsFromFile(String name)
     {
         MusicRecord record ;
@@ -41,17 +53,15 @@ public class ReadRecord {
         {
             while ( true )
             {
-                
-                // TO BE COMPLETED BY THE STUDENTS
             	record = (MusicRecord) input.readObject();
             	System.out.println(record.getYear() + " " + record.getSongName() + " " +
             			record.getSingerName() + " " + record.getPurchasePrice());
            
             }   // END OF WHILE
         }
-                // ADD NECESSARY catch CLAUSES HERE
+                // NECESSARY catch CLAUSES HERE
         catch(EOFException e) {
-        	 ;
+        	 ; 
         }
         catch(ClassNotFoundException e) {
         	System.err.println("Error ....");
@@ -63,7 +73,10 @@ public class ReadRecord {
         }
     }           // END OF METHOD 
     
-    
+    /**
+	 * Creates a new ReadRecord object and reads objects from given file.
+	 * @param args command line arguments (none for this program)
+	 */
     public static void main(String [] args)
     {
         ReadRecord d = new ReadRecord();
