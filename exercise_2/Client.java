@@ -6,12 +6,41 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * The Client class connects to a date-time server in order to allow the 
+ * user to receive date or time information depending on their selection.
+ * @author Ziad Chemali and Lotfi Hasni
+ * @version 1.0
+ * @since October 30, 2020
+ *
+ */
 public class Client {
+	
+	/**
+	 * For writing to socket.
+	 */
 	private PrintWriter socketOut;
+	
+	/**
+	 * For communicating with server.
+	 */
 	private Socket palinSocket;
+	
+	/**
+	 * For reading user input.
+	 */
 	private BufferedReader stdIn;
+	
+	/**
+	 * For reading from socket.
+	 */
 	private BufferedReader socketIn;
 
+	/**
+	 * Client object constructor.
+	 * @param serverName the Internet protocol address the stream socket will be connected to
+	 * @param portNumber the number of the specified port
+	 */
 	public Client(String serverName, int portNumber) {
 		try {
 			palinSocket = new Socket(serverName, portNumber);
@@ -24,6 +53,11 @@ public class Client {
 		}
 	}
 
+	/**
+	 * This method is used to get the date or time selection from the
+	 * user, communicate this choice to the server, and then display
+	 * the response for the user.
+	 */
 	public void communicate()  {
 
 		String line = "";
@@ -56,6 +90,11 @@ public class Client {
 
 	}
 
+	/**
+	 * Creates a new Client object and starts communication.
+	 * @param args command line arguments (none for this program)
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException  {
 		Client aClient = new Client("localhost", 9090);
 		aClient.communicate();

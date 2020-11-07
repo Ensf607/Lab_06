@@ -9,6 +9,11 @@ import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * The DateServer class waits for a client to connect and
+ * sends date or time information corresponding to their selection.
+ *
+ */
 public class DateServer {
 	private BufferedReader socketInput;
 	private PrintWriter socketOutput;
