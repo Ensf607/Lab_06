@@ -50,7 +50,6 @@ public class Game implements Constants,Runnable {
 	@Override
 	public void run() {
 		Referee theRef;
-		System.out.println("rn");
 		
 		if(mark=='X') {
 		socketOut.println("\nPlease enter the name of the \'X\' player: ");
@@ -68,7 +67,6 @@ public class Game implements Constants,Runnable {
 		while(oPlayer==null) {
 			oPlayer=game2.oPlayer;
 			}
-		socketOut.println(xPlayer.getName()+"  "+oPlayer.getName());
 		oPlayer.setBoard(theBoard);
 		}
 		
@@ -89,18 +87,16 @@ public class Game implements Constants,Runnable {
 				xPlayer=game2.xPlayer;
 			}
 			xPlayer.setBoard(theBoard);
-			socketOut.println(xPlayer.getName()+"  "+oPlayer.getName());
 			}
 		socketOut.println("setting ref and board!!");
 		
-		theRef = new Referee();
+		theRef = new Referee(mark);
 		theRef.setBoard(theBoard);
 		theRef.setoPlayer(oPlayer);
 		theRef.setxPlayer(xPlayer);
-		xPlayer.setTurn(1);
-		oPlayer.setTurn(0);
         
 		//start the game
+		
         try {
 			appointReferee(theRef);
 		} catch (IOException e) {

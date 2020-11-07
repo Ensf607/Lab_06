@@ -43,7 +43,7 @@ public synchronized void play() throws NumberFormatException, IOException, Inter
 	
 		while(opponent.turn==0) {
 			
-		
+		System.err.println(Thread.currentThread().getName()+" "+name);
 			
 		
 //		board.display();

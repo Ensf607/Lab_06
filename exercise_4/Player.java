@@ -42,36 +42,44 @@ public synchronized void play() throws NumberFormatException, IOException {
 	
 		while(opponent.turn==0) {
 			
-		makeMove();
-		board.display();
 			
-		if(board.xWins()) {
+			if(board.xWins()) {
 			if(mark=='X')
 				{socketOut.println("Game over!! you win");
-			    opponent.socketOut.print("Game over!! you lost");
-			    break;}
+			    opponent.socketOut.println("Game over!! you lost");
+			    
+			    return;}
 			else
-				{socketOut.println("Game over!! You win");
-				opponent.socketOut.println("Game over!! you lost");
-				
-			break;
-		}}
+			{
+				socketOut.println("Game over!! you lost");
+			    opponent.socketOut.println("Game over!! you win");
+			    return;
+			}
+		}
 		else if (board.oWins()) {
 			if(mark=='O')
 			{socketOut.println("Game over!! you win");
-		    opponent.socketOut.print("Game over!! you lost");}
-			else
-			{socketOut.println("Game over!! you lost");
-		    opponent.socketOut.print("Game over!! you win");
-			break;}
+		    opponent.socketOut.println("Game over!! you lost");
+		    
+		    return;
 			
+		}
+			else
+			{
+				socketOut.println("Game over!! you lost");
+			    opponent.socketOut.println("Game over!! you win");
+			    return;
+			}
 		}
 		else if(board.isFull()) {
 			socketOut.println("It is a tie");
 			opponent.socketOut.println("It is a tie");
-			break;
+			return;
 		}
 		else {
+		makeMove();
+		board.display();
+		opponent.board.display();
 		turn=0;
 		socketOut.println("waiting for "+opponent.name+" to make a move");
 		opponent.setTurn(1);

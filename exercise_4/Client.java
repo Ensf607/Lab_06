@@ -35,15 +35,16 @@ public class Client {
 			try {
 				response = socketIn.readLine();
 				System.out.println(response);
+				if(response.indexOf("win")!=-1 ||response.indexOf("lost")!=-1 ||response.indexOf("tie")!=-1 ) {
+					running=false;
+				}
+				
 				
 				if(response.indexOf("what row")!=-1 ||response.indexOf("what column")!=-1 || response.indexOf("enter")!=-1)
 					{
 					line=stdIn.readLine();
 					socketOut.println(line);}
-				if(response.indexOf("win")!=-1 ||response.indexOf("lost")!=-1 || response.indexOf("tie")!=-1) {
-					running=false;
-					System.out.println(response);
-				}
+			
 					
 			} catch (IOException e) {
 				System.out.println("Sending error: " + e.getMessage());

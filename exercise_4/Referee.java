@@ -11,6 +11,12 @@ public class Referee {
 	//class objects 
 	private Player xPlayer,oPlayer;
 	private Board board;
+	private char mark;
+	public Referee(char mark) {
+		this.mark=mark;
+		// TODO Auto-generated constructor stub
+	}
+	
 
 	/**
 	 * Setter for {@link #oPlayer}
@@ -35,8 +41,9 @@ public class Referee {
 	public void runTheGame() throws NumberFormatException, IOException {
 		xPlayer.setOpponent(oPlayer);
 		oPlayer.setOpponent(xPlayer);
+		
 		board.display();
-		System.out.println(xPlayer.getName()+" "+oPlayer.getName());
+		  if(mark=='X')
 		xPlayer.play();
 		
 		
