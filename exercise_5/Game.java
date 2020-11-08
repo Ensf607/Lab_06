@@ -14,7 +14,6 @@ public class Game implements Constants,Runnable {
 	private PrintWriter socketOut;
 	private BufferedReader socketIn;
 	private Board theBoard;
-	private Referee theRef;
 	Player xPlayer,oPlayer;
 	private Game game2;
 	String nameX,nameO;
@@ -25,21 +24,11 @@ public class Game implements Constants,Runnable {
 	public Game(PrintWriter socketOut,BufferedReader socketIn,char mark) {
 		this.socketIn=socketIn;
 		this.socketOut=socketOut;
-		theBoard  = new Board(socketOut);
+		theBoard  = new Board();
 		this.mark=mark;
 	}
-    /**
-     * This method assigns the local variable {@link #theRef} to the passed @param then invokes
-     *  {@link Referee#runTheGame()}
-     * @param r its an object of type Referee
-     * @throws IOException
-     * @throws InterruptedException 
-     * @throws NumberFormatException 
-     */
-    public void appointReferee(Referee r) throws IOException, NumberFormatException, InterruptedException {
-        theRef = r;
-    	theRef.runTheGame();
-    }
+
+
 	/**
 	 * This is the main function.
 	 * @param args
@@ -59,18 +48,14 @@ public class Game implements Constants,Runnable {
 			nameX= socketIn.readLine();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		xPlayer = new Player(nameX, LETTER_X,socketOut,socketIn);
 		xPlayer.setBoard(theBoard);
-		game2.setXPlayer(xPlayer);
 		socketOut.println("waiting for O Player");
 		while(oPlayer==null) {
 			oPlayer=game2.oPlayer;
 			}
-		socketOut.println(xPlayer.getName()+"  "+oPlayer.getName());
-		oPlayer.setBoard(theBoard);
 		}
 		
 		else if( mark=='O') {
@@ -78,19 +63,15 @@ public class Game implements Constants,Runnable {
 			try {
 				nameO= socketIn.readLine();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			oPlayer = new Player(nameO, LETTER_O,socketOut,socketIn);
 			oPlayer.setBoard(theBoard);
-			game2.setOPlayer(oPlayer);
 			socketOut.println("waitng for xPlayer");
 			while(xPlayer==null) {
 					
 				xPlayer=game2.xPlayer;
 			}
-			xPlayer.setBoard(theBoard);
-			socketOut.println(xPlayer.getName()+"  "+oPlayer.getName());
 			}
 		
 		theRef = new Referee();
@@ -103,7 +84,7 @@ public class Game implements Constants,Runnable {
 		//start the game
         try {
 			try {
-				appointReferee(theRef);
+				theRef.runTheGame();
 			} catch (NumberFormatException | InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -112,14 +93,6 @@ public class Game implements Constants,Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
-	}
-	private void setOPlayer(Player oPlayer2) {
-		// TODO Auto-generated method stub
-		
-	}
-	private void setXPlayer(Player xPlayer2) {
-		// TODO Auto-generated method stub
-		
 	}
 	public void setOtherGame(Game game2) {
      this.game2=game2;		

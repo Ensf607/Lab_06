@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 /**
  * This class is responsible for the console animation of the x & o marks on the screen, and checking 
  * for winners,losers, and if there is a tie
- * @author zchem
  *
  */
 

@@ -7,7 +7,6 @@ import java.util.Scanner;
 /**
  * This class sets the player x and o, prompts the user of each player to enter a place 
  * on the grid to place their mark, then checks if there is any wiinners 
- * @author zchem
  *
  */
 public class Player {
@@ -43,10 +42,8 @@ public synchronized void play() throws NumberFormatException, IOException, Inter
 	
 		while(opponent.turn==0) {
 			
-		System.err.println(Thread.currentThread().getName()+" "+name);
 			
 		
-//		board.display();
 			
 		if(board.xWins()) {
 			if(mark=='X')
@@ -79,11 +76,6 @@ public synchronized void play() throws NumberFormatException, IOException, Inter
 		
 		opponent.socketOut.println("waiting for "+name+" to make a move");
 		makeMove();
-		System.err.println(row+" "+col+" "+mark);
-		opponent.socketOut.println("update Board!!\n");
-		opponent.socketOut.println(row+"");
-		opponent.socketOut.println(col+"");
-		opponent.socketOut.println(mark+"");
 		turn=0;
 		opponent.setTurn(1);
 		opponent.play();
@@ -111,6 +103,10 @@ public synchronized void  makeMove() throws NumberFormatException, IOException, 
 			 {
 				board.addMark(row, col, mark);
 				opponent.board.addMark(row, col, mark);
+				opponent.socketOut.println("update Board!!\n");
+				opponent.socketOut.println(row+"");
+				opponent.socketOut.println(col+"");
+				opponent.socketOut.println(mark+"");
 				check=false;
 			}}
 		}

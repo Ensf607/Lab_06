@@ -2,7 +2,6 @@ package exercise_5;
 /**
  * Interface used by {@link Game} and {@link Board} classes
  * it just final chars for x,o, and space_char
- * @author zchem
  *
  */
 public interface Constants {

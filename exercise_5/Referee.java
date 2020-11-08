@@ -36,9 +36,8 @@ public class Referee {
 	public void runTheGame() throws NumberFormatException, IOException, InterruptedException {
 		xPlayer.setOpponent(oPlayer);
 		oPlayer.setOpponent(xPlayer);
-//		board.display();
-		System.out.println(xPlayer.getName()+" ::::"+oPlayer.getName());
-		xPlayer.play();
+		
+		xPlayer.play();//only one thread is used here
 		
 		
 	}

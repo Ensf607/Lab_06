@@ -4,19 +4,12 @@ import java.io.IOException;
 
 /**
  * This class is responsible for setting the players on the board, then starting the game
- * @author zchem
  *
  */
 public class Referee {
 	//class objects 
 	private Player xPlayer,oPlayer;
 	private Board board;
-	private char mark;
-	public Referee(char mark) {
-		this.mark=mark;
-		// TODO Auto-generated constructor stub
-	}
-	
 
 	/**
 	 * Setter for {@link #oPlayer}
@@ -42,9 +35,8 @@ public class Referee {
 		xPlayer.setOpponent(oPlayer);
 		oPlayer.setOpponent(xPlayer);
 		
-		board.display();
-		  if(mark=='X')
-		xPlayer.play();
+		board.display();//initial board display for both threads
+		xPlayer.play();//only one thread access play-> when play is done then game is finished 
 		
 		
 	}

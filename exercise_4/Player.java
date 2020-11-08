@@ -3,11 +3,9 @@ package exercise_4;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
 /**
  * This class sets the player x and o, prompts the user of each player to enter a place 
  * on the grid to place their mark, then checks if there is any wiinners 
- * @author zchem
  *
  */
 public class Player {
@@ -20,9 +18,11 @@ private char mark;
 int row=-1,col=-1;
 int turn;
 /**
- * Constructor that sets the mark and name of the player
+ * Constructor that sets local variables to passed @param
  * @param name
  * @param mark
+ * @param socketOut
+ * @param socketIn
  */
 public Player(String name, char mark,PrintWriter socketOut,BufferedReader socketIn) {
 this.mark=mark;
@@ -39,10 +39,9 @@ this.socketOut=socketOut;
  * @throws NumberFormatException 
  */
 public synchronized void play() throws NumberFormatException, IOException {
-	
+	//Infinite loop until game ends
 		while(opponent.turn==0) {
-			
-			
+						
 			if(board.xWins()) {
 			if(mark=='X')
 				{socketOut.println("Game over!! you win");
@@ -147,7 +146,6 @@ public void setCol(int col) {
 	this.col = col;
 }
 public String getName() {
-	// TODO Auto-generated method stub
 	return name;
 }
 

@@ -3,23 +3,18 @@ package exercise_5;
 import java.io.PrintWriter;
 
 /**
- * This class is responsible for the console animation of the x & o marks on the screen, and checking 
- * for winners,losers, and if there is a tie
- * @author zchem
- *
+ * This class is responsible for keeping track of the X and O marks on the board, checking for winners
  */
 
 public class Board implements Constants {
 	private char theBoard[][];
 	private int markCount;
-	PrintWriter socketOut;
 /**
  * Constructor that sets the board of3x3 grid to {@link Constants#SPACE_CHAR}
  * @param socketOut 
  */
-	public Board(PrintWriter socketOut) {
+	public Board() {
 		markCount = 0;
-		this.socketOut=socketOut;
 		theBoard = new char[3][];
 		for (int i = 0; i < 3; i++) {
 			theBoard[i] = new char[3];
@@ -66,19 +61,7 @@ public class Board implements Constants {
 	/**
 	 * This method displays the grid with header, hyphens, and spaces
 	 */
-	public void display() {
-		displayColumnHeaders();
-		addHyphens();
-		for (int row = 0; row < 3; row++) {
-			addSpaces();
-			socketOut.print("    row " + row + ' ');
-			for (int col = 0; col < 3; col++)
-				socketOut.print("|  " + getMark(row, col) + "  ");
-			socketOut.println("|");
-			addSpaces();
-			addHyphens();
-		}
-	}
+	
 	/**
 	 * Adds the mark to the board at specific row, col
 	 * @param row
@@ -146,31 +129,5 @@ public class Board implements Constants {
 		}
 		return result;
 	}
-	/**
-	 * Displays the header for the grid
-	 */
-	void displayColumnHeaders() {
-		socketOut.print("          ");
-		for (int j = 0; j < 3; j++)
-			socketOut.print("|col " + j);
-		socketOut.println();
-	}
-	/**
-	 * Adds hyphens to the grid
-	 */
-	void addHyphens() {
-		socketOut.print("          ");
-		for (int j = 0; j < 3; j++)
-			socketOut.print("+-----");
-		socketOut.println("+");
-	}
-	/**
-	 * add space to the grid
-	 */
-	void addSpaces() {
-		socketOut.print("          ");
-		for (int j = 0; j < 3; j++)
-			socketOut.print("|     ");
-		socketOut.println("|");
-	}
+	
 }
